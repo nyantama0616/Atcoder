@@ -2,3 +2,6 @@ main.cpp
 build/*
 !build/.keep
 lib
+
+auto-submit/tmp/*
+!auto-submit/tmp/.keep
