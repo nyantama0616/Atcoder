@@ -61,6 +61,17 @@ class TestCaseSubmitter
     puts "#{@problem_name} - Example #{@test_num}: #{res}"
   end
 
+  def submit
+    input_example_text = get_example_text("入力")
+    output_example_text = get_example_text("出力")
+
+    save_examle_text(input_example_text, "input")
+    save_examle_text(output_example_text, "output")
+
+    execute
+    judge
+  end
+
   def no_example
     raise "No Example"
   end
@@ -72,16 +83,15 @@ test_num = ARGV[1]
 # 前処理
 Dir.mkdir("tmp/#{problem_name}") unless Dir.exist?("tmp/#{problem_name}")
 
-submitter = TestCaseSubmitter.new(problem_name, test_num)
+# 一回だけ
+# submitter = TestCaseSubmitter.new(problem_name, test_num)
+# submitter.submit
 
-input_example_text = submitter.get_example_text("入力")
-output_example_text = submitter.get_example_text("出力")
-
-submitter.save_examle_text(input_example_text, "input")
-submitter.save_examle_text(output_example_text, "output")
-
-submitter.execute
-submitter.judge
+# n回実行
+(1..3).each do |i|
+  submitter = TestCaseSubmitter.new(problem_name, i)
+  submitter.submit
+end
 
 # 後処理
-FileUtils.rm_rf("tmp/#{$problem_name}")
+FileUtils.rm_rf("tmp/#{problem_name}")
