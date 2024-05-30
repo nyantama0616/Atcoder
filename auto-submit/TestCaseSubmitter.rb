@@ -17,7 +17,6 @@ class TestCaseSubmitter
     uri = URI.parse("https://atcoder.jp/contests/#{@context_name}/tasks/#{@problem_name}")
 
     if uri == @@html_cache[0]
-      puts "Use cache!"
       @html = @@html_cache[1]
     else
       @html = Nokogiri::HTML.parse(uri.open)
