@@ -22,7 +22,7 @@ atcoder4: main.cpp
 dest: main.cpp defines.cpp
 	cat macros.cpp defines.cpp main.cpp > dest.cpp
 	g++-14 -std=gnu++20 -Wall -Wextra -O2 -DONLINE_JUDGE -I/opt/boost/gcc/include -I/opt/ac-library -o ./build/dest ./dest.cpp
-	./build/dest > outputs/main.txt
+	./build/dest
 
 sample: main.cpp
 	cat macros.cpp defines.cpp main.cpp > dest.cpp

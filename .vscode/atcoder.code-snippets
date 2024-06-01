@@ -18,7 +18,7 @@
 
   "atcoder-template": {
     "scope": "cpp",
-    "prefix": "atcoder-template",
+    "prefix": "main",
     "body": ["int main() {", "    ", "}"],
     "description": "Template"
   }

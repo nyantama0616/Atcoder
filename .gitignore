@@ -1,8 +1,9 @@
-build/*
-!build/.keep
 lib
 
 auto-submit/tmp/*
 !auto-submit/tmp/.keep
 
 dest.cpp
+
+main/build/*
+!main/build/.keep

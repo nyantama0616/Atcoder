@@ -1,11 +1,3 @@
 {
-    "files.associations": {
-        "*.ejs": "html",
-        "*.erb": "erb",
-        "__split_buffer": "cpp",
-        "deque": "cpp",
-        "list": "cpp",
-        "string": "cpp",
-        "vector": "cpp"
-    }
+    "editor.tabSize": 4,
 }
