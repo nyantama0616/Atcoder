@@ -9,7 +9,7 @@
     },
     "code-runner.runInTerminal": true,
     "code-runner.executorMap": {
-        "cpp": "cd $dir && g++-14 -std=gnu++20 $fileName -o build/$fileNameWithoutExt && ./build/$fileNameWithoutExt",
+        "cpp": "cd $dir && g++-14 -std=gnu++20 $fileName -I ../include -o build/$fileNameWithoutExt && ./build/$fileNameWithoutExt",
     },
 
     "[cpp]": {
