@@ -1,3 +1,23 @@
 {
     "editor.tabSize": 4,
+    "files.associations": {
+        "*.ejs": "html",
+        "*.erb": "erb",
+        "string": "cpp",
+        "stdexcept": "cpp",
+        "iostream": "cpp"
+    },
+    "code-runner.runInTerminal": true,
+    "code-runner.executorMap": {
+        "cpp": "cd $dir && g++-14 -std=gnu++20 $fileName -o build/$fileNameWithoutExt && ./build/$fileNameWithoutExt",
+    },
+
+    "[cpp]": {
+        "editor.formatOnSave": true,
+    },
+
+    // c-cpp-flylintにincludePathを教えてあげる(これ大事)
+    "c-cpp-flylint.includePaths": [
+        "${workspaceFolder}/include",
+    ]
 }
