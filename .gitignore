@@ -7,3 +7,5 @@ dest.cpp
 
 main/build/*
 !main/build/.keep
+
+main/abc*/
