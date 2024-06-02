@@ -6,31 +6,48 @@ require 'nokogiri'
 require "./Contest.rb"
 
 class SampleFetcher
+  attr_reader :case_num
+
   def initialize(contest)
     @contest = contest
 
     @sample_dir = "#{contest.task_dir}/samples"
 
-    return if Dir.exist?(@sample_dir) # samplesディレクトリが存在する場合は何もしない
+    # samplesディレクトリが存在する場合はfetchしない
+    if Dir.exist?(@sample_dir)
+      @case_num = Dir.entries(@sample_dir).length - 2
+      return
+    end
     
-    create_dir
+    Dir.mkdir(@sample_dir)
 
     fetch
   end
-  
+
+  def get_case_dir_path(i)
+    "#{@sample_dir}/case#{i + 1}"
+  end
+
+  def get_case_input_path(i)
+    raise "out of range in case num" if i >= @case_num
+
+    input_file_path = "#{@sample_dir}/case#{i + 1}/input.txt"
+  end
+
+  def get_case_output_path(i)
+    raise "out of range in case num" if i >= @case_num
+
+    output_file_path = "#{@sample_dir}/case#{i + 1}/output.txt"
+  end
   private
   
-  def create_dir
-    Dir.mkdir(@sample_dir) unless Dir.exist?(@sample_dir)
-  end
-  
   def fetch
-    uri = URI.parse("https://atcoder.jp/contests/#{@contest.contest_name}/tasks/#{@contest.contest_id}")
+    uri = URI.parse(@contest.contest_uri)
     html = Nokogiri::HTML.parse(uri.open)
 
-    case_num = html.css("h3").select { |h3_element| h3_element.text.include?("入力例") }.length
+    @case_num = html.css("h3").select { |h3_element| h3_element.text.include?("入力例") }.length
 
-    case_num.times do |i|
+    @case_num.times do |i|
       case_dir = "#{@sample_dir}/case#{i + 1}"
       case_file_input = "#{case_dir}/input.txt"
       case_file_output = "#{case_dir}/output.txt"

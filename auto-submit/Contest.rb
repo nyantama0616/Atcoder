@@ -2,7 +2,7 @@ require './Setting.rb'
 require "json"
 
 class Contest
-  attr_reader :contest_id, :contest_name, :task_name, :contest_dir, :task_dir
+  attr_reader :contest_id, :contest_name, :task_name, :contest_dir, :task_dir, :contest_uri
 
   def initialize(contest_id)
     @contest_id = contest_id
@@ -13,6 +13,8 @@ class Contest
 
     @contest_dir = "#{Setting::SOURCE_DIR}/tmp/#{@contest_name}"
     @task_dir = "#{@contest_dir}/#{@task_name}"
+
+    @contest_uri = "https://atcoder.jp/contests/#{@contest_name}/tasks/#{@contest_id}"
 
     create_dir
   end
@@ -33,7 +35,7 @@ class Contest
   end
 
   def delete_dir
-    Dir.rmdir(@task_dir) if Dir.exist?(@task_dir)
-    Dir.rmdir(@contest_dir) if Dir.exist?(@contest_dir)
+    FileUtils.rm_rf(@task_dir) if Dir.exist?(@task_dir)
+    FileUtils.rm_rf(@contest_dir) if Dir.exist?(@contest_dir)
   end
 end
