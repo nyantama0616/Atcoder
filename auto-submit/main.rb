@@ -3,8 +3,14 @@ require_relative "./src/Submitter.rb"
 require_relative "./src/SampleChecker.rb"
 require_relative "./src/CodeServer.rb"
 require_relative "./src/ArgManager.rb"
+require_relative "./src/Help.rb"
 
 args = ArgManager.new(ARGV)
+
+if args.help
+  Help.show
+  return
+end
 
 problem = Problem.new args.problem_id
 sample_checker =  SampleChecker.new problem

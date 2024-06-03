@@ -1,13 +1,20 @@
 class ArgManager
-  attr_reader :problem_id, :only_check
-  
+  attr_reader :problem_id, :help, :only_check
+
   def initialize(argv)
+    @help = false
     @only_check = false
 
     argv.each do |arg|
-      case arg
-      when "--only-check"
-        @only_check = true
+      if arg[0] == "-"
+        case arg
+        when "--help", "-h"
+          @help = true
+        when "--only-check", "-c"
+          @only_check = true
+        else
+          raise ArgumentError, "Invalid Argument Option '#{arg}'"
+        end
       else
         validate_problem_id(arg)
         @problem_id = arg
