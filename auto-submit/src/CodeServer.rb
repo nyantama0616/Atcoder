@@ -20,8 +20,9 @@ class CodeServer
     main_file_content =  File.open(@main_file_path).read
     macros_file_content = File.open(@macros_file_path).read
 
-    # #include<mylib/macros.h>を展開
-    dest_file_content = main_file_content.gsub("#include <mylib\/macros.h>", macros_file_content)
+    
+    dest_file_content = main_file_content.gsub("#include <mylib\/macros.h>", macros_file_content) # #include<mylib/macros.h>を展開
+    dest_file_content.gsub!("#define DEBUG_MODE 1", "#define DEBUG_MODE 0") # DEBUG_MODEをオフにする
 
     File.open(@dest_cpp_file_path, "w") do |file|
       file.puts dest_file_content

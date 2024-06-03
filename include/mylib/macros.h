@@ -46,7 +46,7 @@ void __joins(const vector<char> v, const string separator, string& res) { ll n =
 void __to_string(ll x, ll num, string& res, ll pad = -1) { while (x >= num) { res = to_string(x % num) + res; x /= num; } if (x > 0) res = to_string(x) + res; ll d = pad - res.size(); rep(i, d) { res = '0' + res; } }
 
 // Debug
-#define DEBUG_MODE 0
+#define DEBUG_MODE 1
 #define debug(x) if (DEBUG_MODE) { cout << "  \033[35m" << #x << "\033[m" << ": " << x << endl; }
 #define debugld(x) if (DEBUG_MODE) { cout << `"  \033[35m`" << #x << `"\033[m`" << `": `"; printld(x);}
 #define debugv(v) if (DEBUG_MODE) { cout << "  \033[35m" << #v << "\033[m" << ": "; for (auto& __x : v) {cout << __x << " "; } cout << endl; }
