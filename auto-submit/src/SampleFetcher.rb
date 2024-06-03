@@ -4,12 +4,14 @@ require 'uri'
 require 'open-uri'
 require 'nokogiri'
 require_relative "./Problem.rb"
+require_relative "./Session.rb"
 
 class SampleFetcher
   attr_reader :case_num
 
-  def initialize(problem)
+  def initialize(problem, session: nil)
     @problem = problem
+    @session = session || Session.new
 
     @sample_dir = "#{problem.task_dir}/samples"
 
@@ -39,11 +41,11 @@ class SampleFetcher
 
     output_file_path = "#{@sample_dir}/case#{i + 1}/output.txt"
   end
-  private
   
   def fetch
+    
     uri = URI.parse(@problem.problem_uri)
-    html = Nokogiri::HTML.parse(uri.open)
+    html = Nokogiri::HTML.parse(uri.open("Cookie" => "REVEL_SESSION=#{@session.session_id}").read)
 
     @case_num = html.css("h3").select { |h3_element| h3_element.text.include?("入力例") }.length
 
