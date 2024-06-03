@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+cd /Users/x/Documents/programming/c++/AtCoder/auto-submit
+
+# TODO: フォルダがない場合にエラー吐くのが気持ち悪い
+ 
+# auto-submit/tmp/abc*があれば削除
+rm -rf tmp/abc*
+
+# auot-submit/tmpにarc*を削除
+rm -rf tmp/arc*
