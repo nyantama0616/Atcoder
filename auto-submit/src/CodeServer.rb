@@ -1,7 +1,7 @@
 # main.cpp内のincludeを展開し、例えばabc123/a/dest.cppに書き込む
 
 require "./Setting.rb"
-require "./Contest.rb"
+require "./Problem.rb"
 
 class CodeServer
   attr_reader :dest_file_path
@@ -9,12 +9,12 @@ class CodeServer
   @@main_dir = "/Users/x/Documents/programming/c++/AtCoder/main"
   @@include_dir = "/Users/x/Documents/programming/c++/AtCoder/include"
 
-  def initialize(contest, is_compile: true)
-    @contest = contest
+  def initialize(problem, is_compile: true)
+    @problem = problem
     @main_file_path = "#{@@main_dir}/main.cpp"
     @macros_file_path = "#{@@include_dir}/mylib/macros.h"
-    @dest_file_path = "#{contest.task_dir}/dest"
-    @dest_cpp_file_path = "#{contest.task_dir}/dest.cpp"
+    @dest_file_path = "#{problem.task_dir}/dest"
+    @dest_cpp_file_path = "#{problem.task_dir}/dest.cpp"
 
     # ファイルの内容を読み込む
     main_file_content =  File.open(@main_file_path).read
@@ -39,6 +39,3 @@ class CodeServer
     File.open(@dest_cpp_file_path).read
   end
 end
-
-contest = Contest.new "abc123_c"
-CodeServer.new contest

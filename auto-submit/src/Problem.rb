@@ -1,20 +1,20 @@
 require './Setting.rb'
 require "json"
 
-class Contest
-  attr_reader :contest_id, :contest_name, :task_name, :contest_dir, :task_dir, :contest_uri, :submittions_uri
+class Problem
+  attr_reader :problem_id, :contest_name, :task_name, :contest_dir, :task_dir, :problem_uri, :submittions_uri
 
-  def initialize(contest_id)
-    @contest_id = contest_id
+  def initialize(problem_id)
+    @problem_id = problem_id
     
-    split = contest_id.split('_')
+    split = problem_id.split('_')
     @contest_name = split[0]
     @task_name = split[1]
 
     @contest_dir = "#{Setting::SOURCE_DIR}/tmp/#{@contest_name}"
     @task_dir = "#{@contest_dir}/#{@task_name}"
 
-    @contest_uri = "https://atcoder.jp/contests/#{@contest_name}/tasks/#{@contest_id}"
+    @problem_uri = "https://atcoder.jp/contests/#{@contest_name}/tasks/#{@problem_id}"
     @submittions_uri = "https://atcoder.jp/contests/#{@contest_name}/submissions/me"
 
     create_dir
@@ -22,7 +22,7 @@ class Contest
 
   def to_json
     JSON.pretty_generate({
-      contest_id: @contest_id,
+      problem_id: @problem_id,
       contest_name: @contest_name,
       task_name: @task_name,
       contest_dir: @contest_dir,

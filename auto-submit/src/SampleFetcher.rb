@@ -3,15 +3,15 @@
 require 'uri'
 require 'open-uri'
 require 'nokogiri'
-require "./Contest.rb"
+require "./Problem.rb"
 
 class SampleFetcher
   attr_reader :case_num
 
-  def initialize(contest)
-    @contest = contest
+  def initialize(problem)
+    @problem = problem
 
-    @sample_dir = "#{contest.task_dir}/samples"
+    @sample_dir = "#{problem.task_dir}/samples"
 
     # samplesディレクトリが存在する場合はfetchしない
     if Dir.exist?(@sample_dir)
@@ -42,7 +42,7 @@ class SampleFetcher
   private
   
   def fetch
-    uri = URI.parse(@contest.contest_uri)
+    uri = URI.parse(@problem.problem_uri)
     html = Nokogiri::HTML.parse(uri.open)
 
     @case_num = html.css("h3").select { |h3_element| h3_element.text.include?("入力例") }.length

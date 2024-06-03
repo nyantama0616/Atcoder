@@ -1,12 +1,12 @@
-require "./contest.rb"
+require "./Problem.rb"
 require "./SampleFetcher.rb"
 require "./CodeServer.rb"
 
 class SampleChecker
-  def initialize(contest)
-    @contest = contest
-    @sample_fetcher = SampleFetcher.new contest
-    @code_server = CodeServer.new contest, is_compile: false
+  def initialize(problem)
+    @problem = problem
+    @sample_fetcher = SampleFetcher.new problem
+    @code_server = CodeServer.new problem, is_compile: false
   end
 
   # 全てのサンプルケースがACかどうかを判定
@@ -42,7 +42,7 @@ class SampleChecker
 end
 
 if __FILE__ == $0
-  contest = Contest.new "abc354_a"
-  checker = SampleChecker.new contest
+  problem = Problem.new "abc354_a"
+  checker = SampleChecker.new problem
   puts checker.check_all
 end
