@@ -6,23 +6,25 @@ require_relative "./Problem.rb"
 class CodeServer
   attr_reader :dest_file_path
 
-  @@main_dir = "/Users/x/Documents/programming/c++/AtCoder/main"
-  @@include_dir = "/Users/x/Documents/programming/c++/AtCoder/include"
-
   def initialize(problem, is_compile: true)
     @problem = problem
-    @main_file_path = "#{@@main_dir}/main.cpp"
-    @macros_file_path = "#{@@include_dir}/mylib/macros.h"
+    @main_file_path = "#{Setting::MAIN_DIR}/main.cpp"
+    @macros_file_path = "#{Setting::INCLUDE_DIR}/mylib/macros.h"
+    @defines_file_path = "#{Setting::INCLUDE_DIR}/mylib/defines.h"
     @dest_file_path = "#{problem.task_dir}/dest"
     @dest_cpp_file_path = "#{problem.task_dir}/dest.cpp"
 
     # ファイルの内容を読み込む
     main_file_content =  File.open(@main_file_path).read
     macros_file_content = File.open(@macros_file_path).read
-
+    defines_file_content = File.open(@defines_file_path).read
     
+    defines_file_content.gsub!("#include <mylib/macros.h>", "") # #include<mylib/macros.h>を削除
+
     dest_file_content = main_file_content.gsub("#include <mylib\/macros.h>", macros_file_content) # #include<mylib/macros.h>を展開
     dest_file_content.gsub!("#define DEBUG_MODE 1", "#define DEBUG_MODE 0") # DEBUG_MODEをオフにする
+    dest_file_content.gsub!("#pragma once", "")
+    dest_file_content.gsub!("#include <mylib\/defines.h>", defines_file_content) # #include<mylib/defines.h>を展開
 
     File.open(@dest_cpp_file_path, "w") do |file|
       file.puts dest_file_content

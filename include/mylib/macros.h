@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 
+#pragma once
+
 using namespace std;
 
 using ll = int64_t;
