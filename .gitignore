@@ -2,6 +2,9 @@ lib
 
 auto-submit/tmp/*
 !auto-submit/tmp/.keep
+auto-submit/cookies.yml
+auto-submit/secrets/*
+!auto-submit/secrets/.keep
 
 dest.cpp
 
