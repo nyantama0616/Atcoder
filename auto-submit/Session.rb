@@ -5,20 +5,25 @@ require "./Cookie"
 class Session
   def initialize
     @agent = Mechanize.new
-    p Cookie.SESSION_ID&.value
+
+    unless logined?
+      login repeat: 3
+    end
   end
 
   def login(repeat: 1)
     page = @agent.get('https://atcoder.jp/login')
 
     repeat.times do
+      
       # プロンプト
       print 'Please enter your AtCoder username: '
       username = gets.chomp
       print 'Please enter your AtCoder password: '
       password = STDIN.noecho(&:gets).chomp
       puts
-  
+      
+      # フォームにusernameとpasswordを入力
       form = page.forms[1]
       form.field_with(name: 'username').value = username
       form.field_with(name: 'password').value = password

@@ -34,6 +34,10 @@ class CodeServer
     command = "g++-14 -std=c++20 -Wall -Wextra -O2 -o #{@dest_file_path} #{@dest_cpp_file_path}"
     system command
   end
+
+  def source_code
+    File.open(@dest_cpp_file_path).read
+  end
 end
 
 contest = Contest.new "abc123_c"

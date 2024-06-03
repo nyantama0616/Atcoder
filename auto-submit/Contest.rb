@@ -2,7 +2,7 @@ require './Setting.rb'
 require "json"
 
 class Contest
-  attr_reader :contest_id, :contest_name, :task_name, :contest_dir, :task_dir, :contest_uri
+  attr_reader :contest_id, :contest_name, :task_name, :contest_dir, :task_dir, :contest_uri, :submittions_uri
 
   def initialize(contest_id)
     @contest_id = contest_id
@@ -15,6 +15,7 @@ class Contest
     @task_dir = "#{@contest_dir}/#{@task_name}"
 
     @contest_uri = "https://atcoder.jp/contests/#{@contest_name}/tasks/#{@contest_id}"
+    @submittions_uri = "https://atcoder.jp/contests/#{@contest_name}/submissions/me"
 
     create_dir
   end
