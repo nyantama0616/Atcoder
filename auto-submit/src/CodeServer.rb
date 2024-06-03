@@ -1,7 +1,7 @@
 # main.cpp内のincludeを展開し、例えばabc123/a/dest.cppに書き込む
 
-require "./Setting.rb"
-require "./Problem.rb"
+require_relative "../Setting.rb"
+require_relative "./Problem.rb"
 
 class CodeServer
   attr_reader :dest_file_path

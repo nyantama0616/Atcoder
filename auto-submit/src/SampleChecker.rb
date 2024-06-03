@@ -1,6 +1,6 @@
-require "./Problem.rb"
-require "./SampleFetcher.rb"
-require "./CodeServer.rb"
+require_relative "./Problem.rb"
+require_relative "./SampleFetcher.rb"
+require_relative "./CodeServer.rb"
 
 class SampleChecker
   def initialize(problem)

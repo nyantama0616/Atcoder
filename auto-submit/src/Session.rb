@@ -1,6 +1,6 @@
 require "mechanize"
 require "io/console"
-require "./Cookie"
+require_relative "./Cookie"
 
 class Session
   def initialize

@@ -3,7 +3,7 @@
 require 'uri'
 require 'open-uri'
 require 'nokogiri'
-require "./Problem.rb"
+require_relative "./Problem.rb"
 
 class SampleFetcher
   attr_reader :case_num

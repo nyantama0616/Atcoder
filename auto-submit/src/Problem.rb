@@ -1,4 +1,4 @@
-require './Setting.rb'
+require_relative '../Setting.rb'
 require "json"
 
 class Problem

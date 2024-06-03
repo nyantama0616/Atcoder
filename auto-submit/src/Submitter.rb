@@ -1,15 +1,15 @@
 # ソースコードを提出するクラス
 
 require "mechanize"
-require "./CodeServer"
-require "./Problem"
-require "./Session"
-require "./Setting"
+require_relative "./CodeServer.rb"
+require_relative "./Problem.rb"
+require_relative "./Session.rb"
+require_relative "../Setting.rb"
 
 class Submitter
-  def initialize(problem, codeServer: nil, session: nil)
+  def initialize(problem, code_server: nil, session: nil)
     @problem = problem
-    @codeServer = codeServer || CodeServer.new(problem)
+    @code_server = code_server || CodeServer.new(problem)
     @session = session || Session.new
 
     @agent = Mechanize.new
@@ -30,7 +30,7 @@ class Submitter
     end
 
     # ソースコードを入力
-    form.field_with(name: "sourceCode").value = @codeServer.source_code
+    form.field_with(name: "sourceCode").value = @code_server.source_code
 
     page = @agent.submit(form)
 
