@@ -22,7 +22,7 @@ class SampleChecker
 
   # 一つのサンプルケースがACかどうかを判定
   def check(index)
-    my_answer_path = "#{@sample_fetcher.get_case_dir_path(index)}/my_answer"
+    my_answer_path = "#{@sample_fetcher.get_case_dir_path(index)}/my_answer.txt"
     
     # 回答を作成
     command = "#{@code_server.dest_file_path} < #{@sample_fetcher.get_case_input_path(index)} > #{my_answer_path}"

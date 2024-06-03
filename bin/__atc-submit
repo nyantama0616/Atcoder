@@ -2,4 +2,4 @@
 
 cd /Users/x/Documents/programming/c++/AtCoder/auto-submit
 
-ruby main.rb "$@"
+ruby check_and_submit.rb "$@"
